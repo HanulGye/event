@@ -487,6 +487,7 @@
         position: relative;
         cursor: pointer;
       }
+
       /*
       .cal-table td.today {
         background: #ffd255;
@@ -512,27 +513,119 @@
         background: #FFC107;
       }
 
-      .day-active i.selIcon{
+      .day-active i.selIcon {
         color: #EA4335;
         transition-property: all;
         transition-duration: 1.5s;
         opacity: 1;
       }
 
-      .day-active i.testAni{
+      .day-active i.testAni {
         opacity: 0;
       }
 
-      /*second modal*/
-      #exampleModalLabel {
-        transition-property: all;
-        transition-duration: 1.5s;
-        transition-delay: 0.8s;
+      /*common question modal*/
+      .underline {
+        background-image: linear-gradient(to right, #a8edae 0%, #d9eb3b 100%);
+        background-repeat: no-repeat;
+        background-size: 100% 20%;
+        background-position: left bottom;
+        animation-name: underLine;
+        animation-duration: 1.2s;
+        animation-delay: 0.2s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        animation-direction: normal;
       }
 
-      #exampleModalLabel ::after{
-        transform: scale(200%);
-      }      
+      @keyframes underLine {
+        0% {
+          background-size: 0% 20%;
+        }
+
+        100% {
+          background-size: 100% 20%;
+        }
+      }
+
+
+      .fa-question-circle {
+        margin-right: 10px;
+        color: #34A853;
+        animation-name: chgColor;
+        animation-duration: 1.5s;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        animation-direction: alternate;
+      }
+
+      @keyframes chgColor {
+        0% {
+          color: whitesmoke;
+        }
+
+        100% {
+          color: #34A853;
+        }
+      }
+
+      .modal-header {
+        padding: 1rem 3rem;
+      }
+
+
+      /*second question*/
+      .answArea {
+        margin: 7%;
+      }
+
+      .area_corr {
+        border-style: dotted;
+        width: 140px;
+        height: 140px;
+        display: inline-block;
+      }
+
+      .underline_noAni {
+        background-image: linear-gradient(to right, red 0%, red 100%);
+        background-repeat: no-repeat;
+        background-size: 100% 20%;
+        background-position: bottom;
+        font-size: 28px;
+      }
+
+      .dragObj {
+        cursor: grab;
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        font-size: 70px;
+      }
+
+      #part_1 {
+        color: violet;
+      }
+
+      #part_2 {
+        color: red;
+      }
+
+      #part_3 {
+        color: blue;
+      }
+
+      #part_4 {
+        color: green;
+      }
+
+      #part_5 {
+        color: yellow;
+      }
+
+      #part_6 {
+        color: orange;
+      }
     </style>
     <title>Google</title>
   </head>
@@ -626,8 +719,12 @@
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Q1. Question Content 1</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <i class="fas fa-question-circle fa-3x"></i>
+                  <h4 class="modal-title" id="exampleModalLabel">
+                    <span> </span>
+                    <span class="underline">Question Content 1</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <div class="container">
@@ -665,8 +762,48 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-outline-secondary btnNext" data-bs-toggle="modal"
+                    data-bs-target="#quizModal2" data-bs-dismiss="modal" disabled>NEXT</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="quizModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <i class="fas fa-question-circle fa-3x"></i>
+                  <h4 class="modal-title" id="exampleModalLabel">
+                    <span> </span>
+                    <span class="underline">Question Content 2</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h5 style="margin-left: 7%;">description for action <strong class="underline_noAni">empathize</strong>
+                  </h5>
+                  <div class="selArea">
+                    <div class="dragObj" id="part_1">가</div>
+                    <div class="dragObj" id="part_2">나</div>
+                    <div class="dragObj" id="part_3">다</div>
+                    <div class="dragObj" id="part_4">라</div>
+                    <div class="dragObj" id="part_5">마</div>
+                    <div class="dragObj" id="part_6">바</div>
+                  </div>
+                  <div class="answArea">
+                    <div class="area_corr c1"></div>
+                    <div class="area_corr c2"></div>
+                    <div class="area_corr c3"></div>
+                    <span style="width: 80px; height: 140px; display: inline-block;"></span>
+                    <div class="area_corr c4"></div>
+                    <div class="area_corr c5"></div>
+                    <div class="area_corr c6"></div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary btnNext" disabled>NEXT</button>
                 </div>
               </div>
             </div>
@@ -930,10 +1067,10 @@
           init.activeDTag = e.target;
           init.activeDate.setDate(day);
           //reloadTodo();
-          if (e.target.dataset.fdate=='2021.01.01') {
+          if (e.target.dataset.fdate == '2021.01.01') {
             createTag(e);
-          }else{
-            countFalse ++;
+          } else {
+            countFalse++;
             console.log(countFalse);
             if (countFalse >= 3) {
               alert("false");
@@ -941,15 +1078,19 @@
           }
         }
       });
-      
+
       function createTag(corrTarget) {
         let tagObj = corrTarget.target;
         tagObj.innerHTML = '<i class = "fab fa-airbnb fa-2x selIcon testAni"></i>';
         document.querySelector(".day-active").style.background = "none";
-        setTimeout(function(){
+        setTimeout(function () {
           document.querySelector(".selIcon").classList.remove('testAni');
-        },1000)
-        
+        }, 1000)
+        let tarBtn = document.querySelector('.btnNext');
+        tarBtn.disabled = false;
+        tarBtn.classList.remove('btn-outline-secondary');
+        tarBtn.classList.add('btn-success');
+
       }
 
       //secondModal function
@@ -960,6 +1101,120 @@
       //   //transform: scale(200%);
       // }
       
+
+      //복수의 문자들에 개별적으로 이벤트를 줘야함.
+      //객체를 반복문을 통해서 가져오는 건 가능했지만, 이벤트를 실행하는 타이밍에 변수에는 마지막 객체만이 담겨 있다. 
+
+      let currentDroppable = null;
+      let indiChar = null;
+      let idSelec_num = 0;
+      
+      for (let d = 0; d < 6; d++) {
+        let idSelec = '#part_';
+        idSelec_num += 1;
+        idSelec += idSelec_num
+        
+        indiChar=document.querySelector(idSelec);
+        indiChar.onmousedown = function (event) {
+          let shiftX = event.clientX - this.getBoundingClientRect().left;
+          let shiftY = event.clientY - this.getBoundingClientRect().top;
+
+          this.style.position = 'absolute';
+          this.style.zIndex = 1200;
+          document.body.append(this);
+
+          moveAt(event.pageX, event.pageY, this);
+
+          function moveAt(pageX, pageY, obj) {
+            obj.style.left = pageX - shiftX + 'px';
+            obj.style.top = pageY - shiftY + 'px';
+          }
+
+           function onMouseMove(event) {
+           moveAt(event.pageX, event.pageY, this);
+
+           this.hidden = true;
+           let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+           this.hidden = false;
+
+           if (!elemBelow) return;
+
+           let droppableBelow = elemBelow.closest('.droppable');
+           if (currentDroppable != droppableBelow) {
+             if (currentDroppable) { // null when we were not over a droppable before this event
+               leaveDroppable(currentDroppable);
+             }
+             currentDroppable = droppableBelow;
+             if (currentDroppable) { // null if we're not coming over a droppable now
+               // (maybe just left the droppable)
+               enterDroppable(currentDroppable);
+             }
+           }
+         }
+
+        
+         document.addEventListener('mousemove', onMouseMove);
+
+         this.onmouseup = function () {
+           document.removeEventListener('mousemove', onMouseMove);
+           this.onmouseup = null;
+         };
+
+        }
+      }
+      
+      //indiChar.onmousedown = function (event) {
+      //  console.log(indiChar);
+
+        // let shiftX = event.clientX - indiChar.getBoundingClientRect().left;
+        // let shiftY = event.clientY - indiChar.getBoundingClientRect().top;
+
+        // indiChar.style.position = 'absolute';
+        // indiChar.style.zIndex = 1200;
+        // document.body.append(indiChar);
+
+        // moveAt(event.pageX, event.pageY);
+
+        // function moveAt(pageX, pageY) {
+        //   indiChar.style.left = pageX - shiftX + 'px';
+        //   indiChar.style.top = pageY - shiftY + 'px';
+        // }
+
+        // function onMouseMove(event) {
+        //   moveAt(event.pageX, event.pageY);
+
+        //   indiChar.hidden = true;
+        //   let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        //   indiChar.hidden = false;
+
+        //   if (!elemBelow) return;
+
+        //   let droppableBelow = elemBelow.closest('.droppable');
+        //   if (currentDroppable != droppableBelow) {
+        //     if (currentDroppable) { // null when we were not over a droppable before this event
+        //       leaveDroppable(currentDroppable);
+        //     }
+        //     currentDroppable = droppableBelow;
+        //     if (currentDroppable) { // null if we're not coming over a droppable now
+        //       // (maybe just left the droppable)
+        //       enterDroppable(currentDroppable);
+        //     }
+        //   }
+        // }
+
+        
+        // document.addEventListener('mousemove', onMouseMove);
+
+        // indiChar.onmouseup = function () {
+        //   document.removeEventListener('mousemove', onMouseMove);
+        //   indiChar.onmouseup = null;
+        // };
+      //}
+
+      //https://ko.javascript.info/mouse-drag-and-drop reference  
+        
+
+
     </script>
   </body>
 
