@@ -6,15 +6,15 @@
     <style>
         #grid_tab {
             width: 400px;
-            height: 400px;
+            height: 600px;
             display: grid;
             grid-template-columns: auto auto auto;
             border: 3px solid darkgray;
         }
 
         .puzPiece {
-            width: 131px;
-            height: 131px;
+            padding: 2px;
+            
         }
         
         #p11 {
@@ -155,6 +155,10 @@
                                     num_mvs++;
                                     objNm.textContent = 'Moves : '+num_mvs;
                                 }
+                            
+                            
+                            chk_compl(selNames);
+                            console.log(chk_compl(selNames));
 
                         break;
 
@@ -459,6 +463,17 @@
             }
         }
         //맞췄을 경우의 처리
+
+        function chk_compl(arrConNames) {
+
+            if (arr_objs[0].textContent == arrConNames[0].substring(2,4) && arr_objs[1].textContent == arrConNames[1].substring(2,4) && arr_objs[2].textContent == arrConNames[2].substring(2,4) && arr_objs[3].textContent == arrConNames[3].substring(2,4) && arr_objs[4].textContent == arrConNames[4].substring(2,4) && arr_objs[5].textContent == arrConNames[5].substring(2,4) && arr_objs[6].textContent == arrConNames[6].substring(2,4) && arr_objs[7].textContent == arrConNames[7].substring(2,4) && arr_objs[8].textContent == arrConNames[8].substring(2,4)) {
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
         //제약 (움직임횟수, 리트라이 횟수)
         
     </script>
