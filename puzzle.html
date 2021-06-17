@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #grid_tab {
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            border: 3px solid darkgray;
+        }
+
+        .puzPiece {
+            width: 131px;
+            height: 131px;
+        }
+        
+        #p11 {
+            background: url("1_1.jpg");
+            background-size: contain;
+        }
+
+        #p12 {
+            background: url("1_2.jpg");
+            background-size: contain;
+        }
+
+        #p13 {
+            background: url("1_3.jpg");
+            background-size: contain;
+        }
+
+        #p21 {
+            background: url("2_1.jpg");
+            background-size: contain;
+        }
+
+        #p22 {
+            background: url("2_2.jpg");
+            background-size: contain;
+        }
+
+        #p23 {
+            background: url("2_3.jpg");
+            background-size: contain;
+        }
+
+        #p31 {
+            background: url("3_1.jpg");
+            background-size: contain;
+        }
+
+        #p32 {
+            background: url("3_2.jpg");
+            background-size: contain;
+        }
+
+        #p33 {
+            background: url("3_3.jpg");
+            background-size: contain;
+        }
+    </style>
+    <title>puzzle</title>
+</head>
+
+<body>
+    <div id="puzWrapper">
+        <div id="totalMove">Moves : 0</div>
+        <div id="grid_tab">
+            <div class="puzPiece" id="p11" onclick="mov_pis('p11')">11</div>
+            <div class="puzPiece" id="p12" onclick="mov_pis('p12')">12</div>
+            <div class="puzPiece" id="p13" onclick="mov_pis('p13')">13</div>
+            <div class="puzPiece" id="p21" onclick="mov_pis('p21')">21</div>
+            <div class="puzPiece" id="p22" onclick="mov_pis('p22')">22</div>
+            <div class="puzPiece" id="p23" onclick="mov_pis('p23')">23</div>
+            <div class="puzPiece" id="p31" onclick="mov_pis('p31')">31</div>
+            <div class="puzPiece" id="p32" onclick="mov_pis('p32')">32</div>
+            <div class="puzPiece" id="p33" onclick="mov_pis('p33')">33</div>
+        </div>
+        <div name="not_yet" id="srtBtn" onclick="strt_puzz()">start button</div>
+    </div>
+    <script>
+        //사전 준비
+        var selNames = new Array('#p11', '#p12', '#p13', '#p21', '#p22', '#p23', '#p31', '#p32', '#p33');
+        var arr_objs = new Array();
+        for (let i = 0; i < selNames.length; i++) {
+            arr_objs.push(document.querySelector(selNames[i]));
+        };
+
+        var num_mvs = 0;
+        var objNm = document.querySelector('#totalMove');
+
+        
+        function strt_puzz() {
+
+            //shuffle of pieces
+            let arr_piec = new Array();
+            while (arr_piec.length < 9) {
+                let cnt_num = Math.round(Math.random() * 100);
+                if ((cnt_num == 11) || (cnt_num == 12) || (cnt_num == 13) || (cnt_num == 21) || (cnt_num == 22) || (cnt_num == 23) || (cnt_num == 31) || (cnt_num == 32) || (cnt_num == 33)) {
+                    if (!arr_piec.includes(cnt_num)) {
+                        arr_piec[arr_piec.length] = cnt_num;
+                    }
+                }
+            }
+            //arr_piec 무작위순으로 정렬한 피스
+            //selNames 각 피스의 위치(좌표값?)
+            //무작위로 정렬되어있는 피스를 퍼즐판에 하나씩 순서대로 놓는게 아래 for문
+
+            for (let i = 0; i < arr_piec.length; i++) {
+                let pPname = String(arr_piec[i]).slice(0, 1) + '_' + String(arr_piec[i]).slice(1, 2);
+                document.querySelector(selNames[i]).textContent = arr_piec[i];
+                document.querySelector(selNames[i]).style.background = 'url(' + pPname + '.jpg)';
+                document.querySelector(selNames[i]).style.backgroundSize = 'contain';
+
+            };
+
+
+            objNm.textContent = 'Moves : 0';
+            num_mvs = 0;
+            document.querySelector('#srtBtn').setAttribute('name', 'started');
+
+
+        }
+
+        //movement of pieces
+        function mov_pis(currArea) {
+            let gStatus = document.querySelector('#srtBtn').getAttribute('name');
+            if (gStatus == 'started') {
+                switch (currArea) {
+                    case 'p11': 
+                                if(arr_objs[1].textContent == '11'){
+                                    tmp_val = arr_objs[0].textContent;
+                                    arr_objs[0].textContent = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[0].style.background
+                                    arr_objs[0].style.background = arr_objs[1].style.background;
+                                    arr_objs[1].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[3].textContent == '11'){
+                                    tmp_val = arr_objs[0].textContent;
+                                    arr_objs[0].textContent = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[0].style.background
+                                    arr_objs[0].style.background = arr_objs[3].style.background;
+                                    arr_objs[3].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                        break;
+
+                    case 'p12': 
+                                if(arr_objs[0].textContent == '11'){
+                                    tmp_val = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = arr_objs[0].textContent;
+                                    arr_objs[0].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[1].style.background
+                                    arr_objs[1].style.background = arr_objs[0].style.background;
+                                    arr_objs[0].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[4].textContent == '11'){
+                                    tmp_val = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[1].style.background
+                                    arr_objs[1].style.background = arr_objs[4].style.background;
+                                    arr_objs[4].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[2].textContent == '11'){
+                                    tmp_val = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = arr_objs[2].textContent;
+                                    arr_objs[2].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[1].style.background
+                                    arr_objs[1].style.background = arr_objs[2].style.background;
+                                    arr_objs[2].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                        break;
+
+                    case 'p13': 
+                                if(arr_objs[1].textContent == '11'){
+                                    tmp_val = arr_objs[2].textContent;
+                                    arr_objs[2].textContent = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[2].style.background
+                                    arr_objs[2].style.background = arr_objs[1].style.background;
+                                    arr_objs[1].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[5].textContent == '11'){
+                                    tmp_val = arr_objs[2].textContent;
+                                    arr_objs[2].textContent = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[2].style.background
+                                    arr_objs[2].style.background = arr_objs[5].style.background;
+                                    arr_objs[5].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                        break;
+
+                    case 'p21':
+                                if(arr_objs[0].textContent == '11'){
+                                    tmp_val = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = arr_objs[0].textContent;
+                                    arr_objs[0].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[3].style.background
+                                    arr_objs[3].style.background = arr_objs[0].style.background;
+                                    arr_objs[0].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[4].textContent == '11'){
+                                    tmp_val = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[3].style.background
+                                    arr_objs[3].style.background = arr_objs[4].style.background;
+                                    arr_objs[4].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[6].textContent == '11'){
+                                    tmp_val = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = arr_objs[6].textContent;
+                                    arr_objs[6].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[3].style.background
+                                    arr_objs[3].style.background = arr_objs[6].style.background;
+                                    arr_objs[6].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                        break;
+
+                    case 'p22': 
+                                if(arr_objs[1].textContent == '11'){
+                                    tmp_val = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = arr_objs[1].textContent;
+                                    arr_objs[1].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[4].style.background
+                                    arr_objs[4].style.background = arr_objs[1].style.background;
+                                    arr_objs[1].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[3].textContent == '11'){
+                                    tmp_val = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[4].style.background
+                                    arr_objs[4].style.background = arr_objs[3].style.background;
+                                    arr_objs[3].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                                if(arr_objs[5].textContent == '11'){
+                                    tmp_val = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[4].style.background
+                                    arr_objs[4].style.background = arr_objs[5].style.background;
+                                    arr_objs[5].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                                if(arr_objs[7].textContent == '11'){
+                                    tmp_val = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[4].style.background
+                                    arr_objs[4].style.background = arr_objs[7].style.background;
+                                    arr_objs[7].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                        break;
+
+                    case 'p23': 
+                                if(arr_objs[2].textContent == '11'){
+                                    tmp_val = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = arr_objs[2].textContent;
+                                    arr_objs[2].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[5].style.background
+                                    arr_objs[5].style.background = arr_objs[2].style.background;
+                                    arr_objs[2].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                                if(arr_objs[4].textContent == '11'){
+                                    tmp_val = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[5].style.background
+                                    arr_objs[5].style.background = arr_objs[4].style.background;
+                                    arr_objs[4].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[8].textContent == '11'){
+                                    tmp_val = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = arr_objs[8].textContent;
+                                    arr_objs[8].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[5].style.background
+                                    arr_objs[5].style.background = arr_objs[8].style.background;
+                                    arr_objs[8].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+
+                        break;
+
+                    case 'p31': 
+                                if(arr_objs[3].textContent == '11'){
+                                    tmp_val = arr_objs[6].textContent;
+                                    arr_objs[6].textContent = arr_objs[3].textContent;
+                                    arr_objs[3].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[6].style.background
+                                    arr_objs[6].style.background = arr_objs[3].style.background;
+                                    arr_objs[3].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[7].textContent == '11'){
+                                    tmp_val = arr_objs[6].textContent;
+                                    arr_objs[6].textContent = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[6].style.background
+                                    arr_objs[6].style.background = arr_objs[7].style.background;
+                                    arr_objs[7].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                        break;
+
+                    case 'p32': 
+                                if(arr_objs[6].textContent == '11'){
+                                    tmp_val = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = arr_objs[6].textContent;
+                                    arr_objs[6].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[7].style.background
+                                    arr_objs[7].style.background = arr_objs[6].style.background;
+                                    arr_objs[6].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[4].textContent == '11'){
+                                    tmp_val = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = arr_objs[4].textContent;
+                                    arr_objs[4].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[7].style.background
+                                    arr_objs[7].style.background = arr_objs[4].style.background;
+                                    arr_objs[4].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[8].textContent == '11'){
+                                    tmp_val = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = arr_objs[8].textContent;
+                                    arr_objs[8].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[7].style.background
+                                    arr_objs[7].style.background = arr_objs[8].style.background;
+                                    arr_objs[8].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                        break;
+
+                    case 'p33': 
+                                if(arr_objs[7].textContent == '11'){
+                                    tmp_val = arr_objs[8].textContent;
+                                    arr_objs[8].textContent = arr_objs[7].textContent;
+                                    arr_objs[7].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[8].style.background
+                                    arr_objs[8].style.background = arr_objs[7].style.background;
+                                    arr_objs[7].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                                if(arr_objs[5].textContent == '11'){
+                                    tmp_val = arr_objs[8].textContent;
+                                    arr_objs[8].textContent = arr_objs[5].textContent;
+                                    arr_objs[5].textContent = tmp_val;
+                                    
+                                    tmp_img = arr_objs[8].style.background
+                                    arr_objs[8].style.background = arr_objs[5].style.background;
+                                    arr_objs[5].style.background = tmp_img;
+
+                                    num_mvs++;
+                                    objNm.textContent = 'Moves : '+num_mvs;
+                                }
+                        break;
+                        
+                }
+
+
+            }
+        }
+        //맞췄을 경우의 처리
+        //제약 (움직임횟수, 리트라이 횟수)
+        
+    </script>
+</body>
+
+</html>
