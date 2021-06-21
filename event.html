@@ -1,497 +1,495 @@
-<DOCTYPE html>
-  <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <!-- need favicon image -->
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="16x16">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script
-      src="https://www.cssscript.com/demo/simple-typewriter-effect-pure-javascript-typewriterjs/typewriter.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"></script>
-    <style>
-      .header-top__right {
-        margin-top: 13px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        font-size: 13px;
-      }
-
-      .right__link_1,
-      .right__link_2,
-      .right__link_3 {
-        padding-right: 16px;
-      }
-
-      .right__link_3 {
-        color: grey;
-      }
-
-      .right__element {
-        font: 13px/27px Roboto, RobotoDraft, Arial, sans-serif;
-        z-index: 986;
-      }
-
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
-      .center {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-      }
-
-      .center-container {
-        flex-direction: column;
-      }
-
-      .center-container .title_container {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 500;
-        display: flex;
-        justify-content: center;
-        font-size: 80px;
-        margin-top: 130px;
-        margin-bottom: 20px;
-      }
-
-      .title_container__item {
-        margin-right: -4px;
-        display: none;
-      }
-
-      .title_container__item:nth-child(1) {
-        font-size: 100px;
-        color: #4285F4;
-        margin-top: -10px;
-      }
-
-      .title_container__item:nth-child(4) {
-        color: #4285F4;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(2) {
-        color: #EA4335;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(3) {
-        color: #FBBC05;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(5) {
-        color: #34A853;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(8) {
-        color: #EA4335;
-        margin-top: 10px;
-        /*transform: rotate(-20deg);*/
-      }
-
-      .title_container__item:nth-child(9) {
-        color: #4285F4;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(10) {
-        color: #34A853;
-        ;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(11) {
-        color: #FBBC05;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(12) {
-        color: #4285F4;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(13) {
-        color: #EA4335;
-        margin-top: 10px;
-        /*transform: rotate(-20deg);*/
-      }
-
-      .title_container__item:nth-child(14) {
-        color: #34A853;
-        ;
-        margin-top: 10px;
-      }
-
-      .title_container__item:nth-child(15) {
-        color: #4285F4;
-        margin-top: 10px;
-      }
-
-      .center-container .center__search {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        width: 585px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .center__search .search__column .input__comment {
-        height: 45px;
-        width: 448px;
-        border: none;
-        font-size: 14px;
-      }
-
-      .center__search .search__column .input__comment:focus {
-        outline: none;
-      }
-
-      .center__search:hover {
-        box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-
-      }
-
-      #serIcon {
-        color: #222;
-        opacity: 0.6;
-        padding-left: 20px;
-        cursor: pointer;
-      }
-
-      .center__search .search__column i:nth-last-child(1) {
-        padding-left: 20px;
-        padding-right: 20px;
-        color: #4285F4;
-        opacity: 1;
-      }
-
-      .center__button {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-      }
-
-      .center__button .button__google,
-      .center__button .button__lucky {
-        background-color: #f2f2f2;
-        border: none;
-        border-radius: 3px;
-        margin-left: 13px;
-        padding: 10px 20px;
-        font-size: 14px;
-        opacity: 0.7;
-        cursor: pointer;
-      }
-
-      #view_ani {
-        height: 34px;
-        margin-top: 11px;
-        width: 454px;
-      }
-
-      .microPhone_clone {
-        background-image: url(./googlemic_clr_24px.svg);
-        background-repeat: no-repeat;
-      }
-
-      .logo_clone {
-        background-image: url(./google_logo.svg);
-        background-repeat: no-repeat;
-        width: 272px;
-        height: 92px;
-        margin-bottom: 5px;
-        margin-top: 41px;
-      }
-
-      .wholeWrapper {
-        width: 100%;
-        height: 100%;
-      }
-
-      .chgBg {
-        transition-property: background;
-        transition-duration: 1.5s;
-        background: #222;
-        /*
-        */
-      }
-
-      /*heartBtnSetting*/
-      .like-btn {
-        position: relative;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        height: 80px;
-        cursor: pointer;
-        transition: all 2.0s;
-        opacity: 0;
-        z-index: 2;
-      }
-
-      .like-btn:checked+.fa-apple {
-        color: red;
-        -webkit-text-stroke: 1px red;
-        animation: .7s linear burst;
-      }
-
-      .fa-apple {
-        display: none;
-        position: absolute;
-        font-size: 3rem;
-        -webkit-text-stroke: 2px #e5e5e5;
-        color: whitesmoke;
-        transition: all ease-in-out;
-      }
-
-      @keyframes burst {
-
-        0%,
-        10% {
-          transform: scale(1);
-          opacity: .5;
-          color: lavender;
-        }
-
-        45% {
-          transform: scale(.2) rotate(30deg);
-          opacity: .75;
-        }
-
-        50% {
-          transform: scale(2) rotate(-37.5deg);
-          opacity: 1;
-          color: red;
-          text-shadow: 2px 2px 6px rgba(235, 9, 9, 0.5);
-        }
-
-        90%,
-        95% {
-          transform: scale(1) rotate(10deg);
-          text-shadow: none;
-        }
-
-        100% {
-          transform: rotate(-2.5deg);
-        }
-
-      }
-
-      /*modal setting*/
-
-      .modal_btn {
-        border: none;
-        background-color: #afb8c9;
-        padding: 17px 55px 17px 55px;
-        border-radius: 30px;
-        font-size: 15px;
-        font-family: 'Nunito', sans-serif;
-        color: #fff;
-        box-shadow: 0 10px 25px #3c4a5645;
-        outline: none;
-        cursor: pointer;
-      }
-
-      h3 {
-        font-size: 18px;
-        margin-bottom: 15px;
-      }
-
-      p {
-        font-size: 16px;
-      }
-
-      .button-close {
-        padding: 10px;
-        align-self: flex-end;
-        background-color: transparent;
-        box-shadow: none;
-        color: #838282;
-      }
-
-      dialog {
-        padding: 0;
-        border: none;
-        border-radius: 6px;
-        animation: appear 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        box-shadow: 0 25px 40px -20px #3c4a56;
-      }
-
-      .dialog__animate-out {
-        animation: dissappear 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-      }
-
-      .dialog__inner {
-        display: flex;
-        flex-direction: column;
-        color: #838282;
-      }
-
-      .dialog__close-btn {
-        align-self: flex-end;
-      }
-
-      .dialog__content {
-        padding: 0 55px 55px 55px;
-      }
-
-      .dialog__footer {
-        padding: 55px 55px 0 55px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      @keyframes appear {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes dissappear {
-        from {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        to {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-      }
-
-      .giftBox {
-        transition-property: all;
-        transition-duration: 1.5s;
-      }
-
-      .giftBox:hover {
-        color: #EA4335;
-        transform: scale(200%);
-      }
-
-      /* ======== Calendar ======== */
-      .my-calendar {
-        width: 700px;
-        margin: 30px;
-        padding: 20px 20px 10px;
-        text-align: center;
-        font-weight: 800;
-        border: 1px solid #ddd;
-        cursor: default;
-      }
-
-      .my-calendar .clicked-date {
-        border-radius: 25px;
-        margin-top: 36px;
-        float: left;
-        width: 42%;
-        padding: 46px 0 26px;
-        background: #ddd;
-      }
-
-      .my-calendar .calendar-box {
-        float: right;
-        width: 58%;
-        padding-left: 30px;
-      }
-
-      .clicked-date .cal-day {
-        font-size: 24px;
-      }
-
-      .clicked-date .cal-date {
-        font-size: 130px;
-      }
-
-      .ctr-box {
-        padding: 0 16px;
-        margin-bottom: 20px;
-        font-size: 20px;
-      }
-
-      .ctr-box .btn-cal {
-        position: relative;
-        float: left;
-        width: 25px;
-        height: 25px;
-        margin-top: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        border: none;
-        background: none;
-      }
-
-      .ctr-box .btn-cal:after {
-        content: '<';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        line-height: 25px;
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      .ctr-box .btn-cal.next {
-        float: right;
-      }
-
-      .ctr-box .btn-cal.next:after {
-        content: '>';
-      }
-
-      .cal-table {
-        width: 100%;
-        text-align: center;
-      }
-
-      .cal-table th {
-        width: 14.2857%;
-        padding-bottom: 5px;
-        font-size: 16px;
-        font-weight: 900;
-      }
-
-      .cal-table td {
-        padding: 3px 0;
-        height: 50px;
-        font-size: 15px;
-        vertical-align: middle;
-      }
-
-      .cal-table td.day {
-        position: relative;
-        cursor: pointer;
-      }
-
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="16x16">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link href="http://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">  
+  <script
+    src="https://www.cssscript.com/demo/simple-typewriter-effect-pure-javascript-typewriterjs/typewriter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <style>
+    .header-top__right {
+      margin-top: 13px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .right__link_1,
+    .right__link_2,
+    .right__link_3 {
+      padding-right: 16px;
+    }
+
+    .right__link_3 {
+      color: grey;
+    }
+
+    .right__element {
+      font: 13px/27px Roboto, RobotoDraft, Arial, sans-serif;
+      z-index: 986;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .center {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .center-container {
+      flex-direction: column;
+    }
+
+    .center-container .title_container {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      font-size: 80px;
+      margin-top: 130px;
+      margin-bottom: 20px;
+    }
+
+    .title_container__item {
+      margin-right: -4px;
+      display: none;
+    }
+
+    .title_container__item:nth-child(1) {
+      font-size: 100px;
+      color: #4285F4;
+      margin-top: -10px;
+    }
+
+    .title_container__item:nth-child(4) {
+      color: #4285F4;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(2) {
+      color: #EA4335;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(3) {
+      color: #FBBC05;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(5) {
+      color: #34A853;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(8) {
+      color: #EA4335;
+      margin-top: 10px;
+      /*transform: rotate(-20deg);*/
+    }
+
+    .title_container__item:nth-child(9) {
+      color: #4285F4;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(10) {
+      color: #34A853;
+      ;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(11) {
+      color: #FBBC05;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(12) {
+      color: #4285F4;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(13) {
+      color: #EA4335;
+      margin-top: 10px;
+      /*transform: rotate(-20deg);*/
+    }
+
+    .title_container__item:nth-child(14) {
+      color: #34A853;
+      ;
+      margin-top: 10px;
+    }
+
+    .title_container__item:nth-child(15) {
+      color: #4285F4;
+      margin-top: 10px;
+    }
+
+    .center-container .center__search {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      width: 585px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .center__search .search__column .input__comment {
+      height: 45px;
+      width: 448px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .center__search .search__column .input__comment:focus {
+      outline: none;
+    }
+
+    .center__search:hover {
+      box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+
+    }
+
+    #serIcon {
+      color: #222;
+      opacity: 0.6;
+      padding-left: 20px;
+      cursor: pointer;
+    }
+
+    .center__search .search__column i:nth-last-child(1) {
+      padding-left: 20px;
+      padding-right: 20px;
+      color: #4285F4;
+      opacity: 1;
+    }
+
+    .center__button {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .center__button .button__google,
+    .center__button .button__lucky {
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 3px;
+      margin-left: 13px;
+      padding: 10px 20px;
+      font-size: 14px;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    #view_ani {
+      height: 34px;
+      margin-top: 11px;
+      width: 454px;
+    }
+
+    .microPhone_clone {
+      background-image: url(./googlemic_clr_24px.svg);
+      background-repeat: no-repeat;
+    }
+
+    .logo_clone {
+      background-image: url(./google_logo.svg);
+      background-repeat: no-repeat;
+      width: 272px;
+      height: 92px;
+      margin-bottom: 5px;
+      margin-top: 41px;
+    }
+
+    .wholeWrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .chgBg {
+      transition-property: background;
+      transition-duration: 1.5s;
+      background: #222;
       /*
+        */
+    }
+
+    /*heartBtnSetting*/
+    .like-btn {
+      position: relative;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      transition: all 2.0s;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .like-btn:checked+.fa-apple {
+      color: red;
+      -webkit-text-stroke: 1px red;
+      animation: .7s linear burst;
+    }
+
+    .fa-apple {
+      display: none;
+      position: absolute;
+      font-size: 3rem;
+      -webkit-text-stroke: 2px #e5e5e5;
+      color: whitesmoke;
+      transition: all ease-in-out;
+    }
+
+    @keyframes burst {
+
+      0%,
+      10% {
+        transform: scale(1);
+        opacity: .5;
+        color: lavender;
+      }
+
+      45% {
+        transform: scale(.2) rotate(30deg);
+        opacity: .75;
+      }
+
+      50% {
+        transform: scale(2) rotate(-37.5deg);
+        opacity: 1;
+        color: red;
+        text-shadow: 2px 2px 6px rgba(235, 9, 9, 0.5);
+      }
+
+      90%,
+      95% {
+        transform: scale(1) rotate(10deg);
+        text-shadow: none;
+      }
+
+      100% {
+        transform: rotate(-2.5deg);
+      }
+
+    }
+
+    /*modal setting*/
+
+    .modal_btn {
+      border: none;
+      background-color: #afb8c9;
+      padding: 17px 55px 17px 55px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-family: 'Nunito', sans-serif;
+      color: #fff;
+      box-shadow: 0 10px 25px #3c4a5645;
+      outline: none;
+      cursor: pointer;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .button-close {
+      padding: 10px;
+      align-self: flex-end;
+      background-color: transparent;
+      box-shadow: none;
+      color: #838282;
+    }
+
+    dialog {
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      animation: appear 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+      box-shadow: 0 25px 40px -20px #3c4a56;
+    }
+
+    .dialog__animate-out {
+      animation: dissappear 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+
+    .dialog__inner {
+      display: flex;
+      flex-direction: column;
+      color: #838282;
+    }
+
+    .dialog__close-btn {
+      align-self: flex-end;
+    }
+
+    .dialog__content {
+      padding: 0 55px 55px 55px;
+    }
+
+    .dialog__footer {
+      padding: 55px 55px 0 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes dissappear {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    .giftBox {
+      transition-property: all;
+      transition-duration: 1.5s;
+    }
+
+    .giftBox:hover {
+      color: #EA4335;
+      transform: scale(200%);
+    }
+
+    /* ======== Calendar ======== */
+    .my-calendar {
+      width: 700px;
+      margin: 30px;
+      padding: 20px 20px 10px;
+      text-align: center;
+      font-weight: 800;
+      border: 1px solid #ddd;
+      cursor: default;
+    }
+
+    .my-calendar .clicked-date {
+      border-radius: 25px;
+      margin-top: 36px;
+      float: left;
+      width: 42%;
+      padding: 46px 0 26px;
+      background: #ddd;
+    }
+
+    .my-calendar .calendar-box {
+      float: right;
+      width: 58%;
+      padding-left: 30px;
+    }
+
+    .clicked-date .cal-day {
+      font-size: 24px;
+    }
+
+    .clicked-date .cal-date {
+      font-size: 130px;
+    }
+
+    .ctr-box {
+      padding: 0 16px;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .ctr-box .btn-cal {
+      position: relative;
+      float: left;
+      width: 25px;
+      height: 25px;
+      margin-top: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .ctr-box .btn-cal:after {
+      content: '<';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 25px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .ctr-box .btn-cal.next {
+      float: right;
+    }
+
+    .ctr-box .btn-cal.next:after {
+      content: '>';
+    }
+
+    .cal-table {
+      width: 100%;
+      text-align: center;
+    }
+
+    .cal-table th {
+      width: 14.2857%;
+      padding-bottom: 5px;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .cal-table td {
+      padding: 3px 0;
+      height: 50px;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .cal-table td.day {
+      position: relative;
+      cursor: pointer;
+    }
+
+    /*
       .cal-table td.today {
         background: #ffd255;
         border-radius: 50%;
@@ -499,726 +497,740 @@
       }
       */
 
-      .cal-table td.day-active {
-        background: #ff8585;
-        border-radius: 50%;
-        color: #fff;
+    .cal-table td.day-active {
+      background: #ff8585;
+      border-radius: 50%;
+      color: #fff;
+    }
+
+    .cal-table td.has-event:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      background: #FFC107;
+    }
+
+    .day-active i.selIcon {
+      color: #EA4335;
+      transition-property: all;
+      transition-duration: 1.5s;
+      opacity: 1;
+    }
+
+    .day-active i.testAni {
+      opacity: 0;
+    }
+
+    .descrip_q1{
+      text-align: center;
+      font-family: 'Digital-7 Mono', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+
+    /*common question modal*/
+    .underline {
+      background-image: linear-gradient(to right, #a8edae 0%, #d9eb3b 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 20%;
+      background-position: left bottom;
+      animation-name: underLine;
+      animation-duration: 1.2s;
+      animation-delay: 0.2s;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+      animation-direction: normal;
+    }
+
+    @keyframes underLine {
+      0% {
+        background-size: 0% 20%;
       }
 
-      .cal-table td.has-event:after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 4px;
-        background: #FFC107;
-      }
-
-      .day-active i.selIcon {
-        color: #EA4335;
-        transition-property: all;
-        transition-duration: 1.5s;
-        opacity: 1;
-      }
-
-      .day-active i.testAni {
-        opacity: 0;
-      }
-
-      /*common question modal*/
-      .underline {
-        background-image: linear-gradient(to right, #a8edae 0%, #d9eb3b 100%);
-        background-repeat: no-repeat;
+      100% {
         background-size: 100% 20%;
-        background-position: left bottom;
-        animation-name: underLine;
-        animation-duration: 1.2s;
-        animation-delay: 0.2s;
-        animation-iteration-count: 1;
-        animation-timing-function: linear;
-        animation-direction: normal;
+      }
+    }
+
+
+    .fa-question-circle {
+      margin-right: 10px;
+      color: #34A853;
+      animation-name: chgColor;
+      animation-duration: 1.5s;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+    }
+
+    @keyframes chgColor {
+      0% {
+        color: whitesmoke;
       }
 
-      @keyframes underLine {
-        0% {
-          background-size: 0% 20%;
-        }
-
-        100% {
-          background-size: 100% 20%;
-        }
-      }
-
-
-      .fa-question-circle {
-        margin-right: 10px;
+      100% {
         color: #34A853;
-        animation-name: chgColor;
-        animation-duration: 1.5s;
-        animation-delay: 0s;
-        animation-iteration-count: 1;
-        animation-timing-function: linear;
-        animation-direction: alternate;
       }
+    }
 
-      @keyframes chgColor {
-        0% {
-          color: whitesmoke;
-        }
+    .modal-header {
+      padding: 1rem 3rem;
+    }
 
-        100% {
-          color: #34A853;
-        }
-      }
+    /*common notice*/
+    .notice {
+      width: 700px;
+      margin: auto;
+      padding: 20px 20px 10px;
+      border: 1px solid #ddd;
+      cursor: default;
+    }
 
-      .modal-header {
-        padding: 1rem 3rem;
-      }
+    /*common button*/
+    .btn_container {
+      font-family: 'Rubik', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5%;
+      margin-bottom: 7%;
+      background: #fff;
+    }
 
+    button.comAgree {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: 600;
+      color: #382b22;
+      text-transform: uppercase;
+      padding: 1.25em 2em;
+      background: #fff0f0;
+      border: 2px solid #b18597;
+      border-radius: 0.75em;
+      transform-style: preserve-3d;
+      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
 
-      /*second question*/
-      .answArea {
-        margin: 7%;
-      }
+    button.comAgree::before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #f9c4d2;
+      border-radius: inherit;
+      box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+      transform: translate3d(0, 0.75em, -1em);
+      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
 
-      .area_corr {
-        border-style: dotted;
-        width: 140px;
-        height: 140px;
-        display: inline-block;
-      }
+    button.comAgree:hover {
+      background: #ffe9e9;
+      transform: translate(0, 0.25em);
+    }
 
-      .underline_noAni {
-        background-image: linear-gradient(to right, red 0%, red 100%);
-        background-repeat: no-repeat;
-        background-size: 100% 20%;
-        background-position: bottom;
-        font-size: 28px;
-      }
+    button.comAgree:hover::before {
+      box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+      transform: translate3d(0, 0.5em, -1em);
+    }
 
-      .dragObj {
-        cursor: grab;
-        width: 100px;
-        height: 100px;
-        display: inline-block;
-        font-size: 70px;
-      }
+    button.comAgree:active {
+      background: #ffe9e9;
+      transform: translate(0em, 0.75em);
+    }
 
-      #part_1 {
-        color: violet;
-      }
+    button.comAgree:active::before {
+      box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+      transform: translate3d(0, 0, -1em);
+    }
 
-      #part_2 {
-        color: red;
-      }
+    #puzFrame{
+      width: 100%; 
+      height: 100%;
+      animation: appear 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+  </style>
+  <title>Google</title>
+</head>
 
-      #part_3 {
-        color: blue;
-      }
+<body>
+  <div class="confetti">
+  </div>
 
-      #part_4 {
-        color: green;
-      }
-
-      #part_5 {
-        color: yellow;
-      }
-
-      #part_6 {
-        color: orange;
-      }
-    </style>
-    <title>Google</title>
-  </head>
-
-  <body>
-    <div class="confetti">
-    </div>
-
-    <div class="wholeWrapper">
-      <header class="header-top">
-        <div class="header-top__right">
-          <a class="right__link_1" href="https://www.google.com">
-            <div class="right__element">
-              Gmail
-            </div>
-          </a>
-          <a class="right__link_2" href="https://www.google.com">
-            <div class="right__element">
-              Images
-            </div>
-          </a>
-          <a class="right__link_3" href="https://www.google.com">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#5F6368">
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
-            </svg>
-          </a>
-          <a class="right__link_4" href="https://www.google.com">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#5F6368">
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-            </svg>
-          </a>
+  <div class="wholeWrapper">
+    <header class="header-top">
+      <div class="header-top__right">
+        <a class="right__link_1" href="#">
+          <div class="right__element">
+            Gmail
+          </div>
+        </a>
+        <a class="right__link_2" href="#">
+          <div class="right__element">
+            Images
+          </div>
+        </a>
+        <a class="right__link_3" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#5F6368">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
+          </svg>
+        </a>
+        <a class="right__link_4" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#5F6368">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+          </svg>
+        </a>
+      </div>
+    </header>
+    <main class="center">
+      <div class="center-container">
+        <div class="title_container">
+          <div class="title_container__item">A</div>
+          <div class="title_container__item">B</div>
+          <div class="title_container__item">C</div>
+          <div class="title_container__item">D</div>
+          <div class="title_container__item">E</div>
+          <div class="title_container__item">&nbsp;</div>
+          <div class="title_container__item">&nbsp;</div>
+          <div class="title_container__item">F</div>
+          <div class="title_container__item">G</div>
+          <div class="title_container__item">H</div>
+          <div class="title_container__item">I</div>
+          <div class="title_container__item">J</div>
+          <div class="title_container__item">K</div>
+          <div class="title_container__item">L</div>
+          <div class="title_container__item">M</div>
+          <i class="logo_clone"></i>
         </div>
-      </header>
-      <main class="center">
-        <div class="center-container">
-          <div class="title_container">
-            <div class="title_container__item">A</div>
-            <div class="title_container__item">B</div>
-            <div class="title_container__item">C</div>
-            <div class="title_container__item">D</div>
-            <div class="title_container__item">E</div>
-            <div class="title_container__item">&nbsp;</div>
-            <div class="title_container__item">&nbsp;</div>
-            <div class="title_container__item">F</div>
-            <div class="title_container__item">G</div>
-            <div class="title_container__item">H</div>
-            <div class="title_container__item">I</div>
-            <div class="title_container__item">J</div>
-            <div class="title_container__item">K</div>
-            <div class="title_container__item">L</div>
-            <div class="title_container__item">M</div>
-            <i class="logo_clone"></i>
-          </div>
-          <div class="center__search">
-            <div class="search__column">
-              <i class="fas fa-search" id="serIcon"></i>
+        <div class="center__search">
+          <div class="search__column">
+            <i class="fas fa-search" id="serIcon"></i>
 
 
-            </div>
-            <div class="input__comment" id="view_ani"></div>
-            <div class="search__column">
-              <i class="microPhone_clone"></i>
+          </div>
+          <div class="input__comment" id="view_ani"></div>
+          <div class="search__column">
+            <i class="microPhone_clone"></i>
+          </div>
+        </div>
+        <div class="center__button">
+          <input type="submit" value="Google Search" class="button__google"></input>
+          <input type="submit" value="I'm Feeling Lucky" class="button__lucky"></input>
+          <input type="checkbox" class="like-btn" id="mOpenBtn">
+          <i class="fab fa-apple"></i>
+          </input>
+        </div>
+        <dialog open>
+          <div class="dialog__inner">
+            <button class="modal_btn button-close close">╳</button>
+            <div class="dialog__content">
+              <h3>Native dialog element</h3>
+              <p>This is the new native dialog element</p>
+              <footer class="dialog__footer" data-bs-toggle="modal" data-bs-target="#quizModal1">
+                <i class="fas fa-gift fa-5x giftBox"></i>
+              </footer>
             </div>
           </div>
-          <div class="center__button">
-            <input type="submit" value="Google Search" class="button__google"></input>
-            <input type="submit" value="I'm Feeling Lucky" class="button__lucky"></input>
-            <input type="checkbox" class="like-btn" id="mOpenBtn">
-            <i class="fab fa-apple"></i>
-            </input>
-          </div>
-          <dialog open>
-            <div class="dialog__inner">
-              <button class="modal_btn button-close close">╳</button>
-              <div class="dialog__content">
-                <h3>Native dialog element</h3>
-                <p>This is the new native dialog element</p>
-                <footer class="dialog__footer" data-bs-toggle="modal" data-bs-target="#quizModal1">
-                  <i class="fas fa-gift fa-5x giftBox"></i>
-                </footer>
+        </dialog>
+
+        <div class="modal fade" id="quizModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4 class="modal-title" id="exampleModalLabel">
+                  <span> </span>
+                  <span class="underline">Stage : Date from calendar</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </div>
-          </dialog>
-
-          <div class="modal fade" id="quizModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <i class="fas fa-question-circle fa-3x"></i>
-                  <h4 class="modal-title" id="exampleModalLabel">
-                    <span> </span>
-                    <span class="underline">Question Content 1</span>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="container">
-                    <div class="my-calendar clearfix">
-                      <div class="clicked-date">
-                        <div class="cal-day"></div>
-                        <div class="cal-date"></div>
-                      </div>
-                      <div class="calendar-box">
-                        <div class="ctr-box clearfix">
-                          <button type="button" title="prev" class="btn-cal prev">
-                          </button>
-                          <span class="cal-month"></span>
-                          <span class="cal-year"></span>
-                          <button type="button" title="next" class="btn-cal next">
-                          </button>
-                        </div>
-                        <table class="cal-table">
-                          <thead>
-                            <tr>
-                              <th>S</th>
-                              <th>M</th>
-                              <th>T</th>
-                              <th>W</th>
-                              <th>T</th>
-                              <th>F</th>
-                              <th>S</th>
-                            </tr>
-                          </thead>
-                          <tbody class="cal-body"></tbody>
-                        </table>
-                      </div>
+              <div class="modal-body">
+                <div class="container">
+                  <div class="descrip_q1">Choose first day we officially met from calendar</div>
+                  <div class="my-calendar clearfix">
+                    <div class="clicked-date">
+                      <div class="cal-day"></div>
+                      <div class="cal-date"></div>
                     </div>
-                    <!-- // .my-calendar -->
+                    <div class="calendar-box">
+                      <div class="ctr-box clearfix">
+                        <button type="button" title="prev" class="btn-cal prev">
+                        </button>
+                        <span class="cal-month"></span>
+                        <span class="cal-year"></span>
+                        <button type="button" title="next" class="btn-cal next">
+                        </button>
+                      </div>
+                      <table class="cal-table">
+                        <thead>
+                          <tr>
+                            <th>S</th>
+                            <th>M</th>
+                            <th>T</th>
+                            <th>W</th>
+                            <th>T</th>
+                            <th>F</th>
+                            <th>S</th>
+                          </tr>
+                        </thead>
+                        <tbody class="cal-body"></tbody>
+                      </table>
+                    </div>
                   </div>
+                  <!-- // .my-calendar -->
                 </div>
-                <div class="modal-footer">
+              </div>
+              <div class="modal-footer">
+                <!--
                   <button type="button" class="btn btn-outline-secondary btnNext" data-bs-toggle="modal"
                     data-bs-target="#quizModal2" data-bs-dismiss="modal" disabled>NEXT</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modal fade" id="quizModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <i class="fas fa-question-circle fa-3x"></i>
-                  <h4 class="modal-title" id="exampleModalLabel">
-                    <span> </span>
-                    <span class="underline">Question Content 2</span>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <h5 style="margin-left: 7%;">description for action <strong class="underline_noAni">empathize</strong>
-                  </h5>
-                  <div class="selArea">
-                    <div class="dragObj" id="part_1">가</div>
-                    <div class="dragObj" id="part_2">나</div>
-                    <div class="dragObj" id="part_3">다</div>
-                    <div class="dragObj" id="part_4">라</div>
-                    <div class="dragObj" id="part_5">마</div>
-                    <div class="dragObj" id="part_6">바</div>
-                  </div>
-                  <div class="answArea">
-                    <div class="area_corr c1"></div>
-                    <div class="area_corr c2"></div>
-                    <div class="area_corr c3"></div>
-                    <span style="width: 80px; height: 140px; display: inline-block;"></span>
-                    <div class="area_corr c4"></div>
-                    <div class="area_corr c5"></div>
-                    <div class="area_corr c6"></div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary btnNext" disabled>NEXT</button>
-                </div>
+                -->
+                <button type="button" class="btn btn-outline-secondary btnNext" data-bs-toggle="modal"
+                  data-bs-target="#quizModal2" data-bs-dismiss="modal" disabled>NEXT</button>
               </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
-    <script>
-      //typingEffect start
-      var typing = document.getElementById('view_ani');
-      var typewriter = new Typewriter(typing, {
-        loop: false
-      });
 
-      typing.addEventListener('click', function (event) {
-        typewriter.typeString('test text1')
-          .pauseFor(1000)
-          .deleteAll()
-          .typeString('test text2')
-          .pauseFor(500)
-          .deleteChars(15)
-          .pauseFor(1500)
-          .deleteAll()
-          .typeString('test text3')
-          .pauseFor(700)
-          .deleteChars(9)
-          .typeString('test text4')
-        typewriter.start();
+        <div class="modal fade" id="quizModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4 class="modal-title" id="exampleModalLabel">
+                  <span> </span>
+                  <span class="underline">Stage : Make a sentence</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+               
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary btnNext" disabled>NEXT</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      });
-      //shuffleText start
-      let cnt_end = 0;
-      const shuffleText = (element, e) => {
-        let letters = Array.from(element.querySelectorAll(".title_container__item")),
-          keyCode = letters.map(letter => {
-            return letter.textContent.charCodeAt(0);
-          }),
-          min = Math.min(...keyCode) - 10,
-          max = Math.max(...keyCode) + 10,
-          cont = 0;
+        <div class="modal fade" id="quizModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          data-bs-backdrop="static" data-bs-keyboard="false">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content" id="q3ModalContent">
+              <div class="modal-header">
+                <i class="fas fa-question-circle fa-3x"></i>
+                <h4 class="modal-title" id="exampleModalLabel">
+                  <span> </span>
+                  <span class="underline">Stage : PUZZLE</span>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container" id="q3Container">
+                  <div class="notice">
+                    <h2 style="text-align: center;">How to play</h2>
+                    <br>
+                    <br>
+                    <h5>1. You can switch white piece and other adjoin pieces by click.</h5>
+                    <br>
+                    <h5>2. You have only <span style="color: red;">3 chances</span></h5>
+                    <br>
+                    <h5>3. You have to put the puzzle in <span style="color: red;">5 minutes</span></h5>
+                    <div class="btn_container">
+                      <button class="comAgree" id="puzBtn" onclick="onClickPuzz()">I got it !</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
 
-        letters.map((letter, index) => {
-          let interv = setInterval(() => {
-            let randNumber = randomNumber(min, max);
+      </div>
+    </main>
+  </div>
+  <script>
+    //typingEffect start
+    var typing = document.getElementById('view_ani');
+    var typewriter = new Typewriter(typing, {
+      loop: false
+    });
 
-            if (keyCode[index] === randNumber.randNumber) {
-              letter.textContent = String.fromCharCode(keyCode[index]);
-              cont++;
-              if (cont === letters.length) {
-                e.target.dataset.triggered = false;
-              }
-              clearInterval(interv);
-              cnt_end++;
-            } else {
-              letter.textContent = randNumber.randNumberShow;
+    typing.addEventListener('click', function (event) {
+      typewriter.typeString('test text1')
+        .pauseFor(1000)
+        .deleteAll()
+        .typeString('test text2')
+        .pauseFor(500)
+        .deleteChars(15)
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString('test text3')
+        .pauseFor(700)
+        .deleteChars(9)
+        .typeString('test text4')
+      typewriter.start();
+
+    });
+
+    // calendar가 보이는 시점에 타이핑 되어야 하는데 나중에 수정.
+    // let typing2 = document.querySelector('.descrip_q1');
+    // typewriter = new Typewriter(typing2, {
+    //   loop: false
+    // });
+
+    //shuffleText start
+    let cnt_end = 0;
+    const shuffleText = (element, e) => {
+      let letters = Array.from(element.querySelectorAll(".title_container__item")),
+        keyCode = letters.map(letter => {
+          return letter.textContent.charCodeAt(0);
+        }),
+        min = Math.min(...keyCode) - 10,
+        max = Math.max(...keyCode) + 10,
+        cont = 0;
+
+      letters.map((letter, index) => {
+        let interv = setInterval(() => {
+          let randNumber = randomNumber(min, max);
+
+          if (keyCode[index] === randNumber.randNumber) {
+            letter.textContent = String.fromCharCode(keyCode[index]);
+            cont++;
+            if (cont === letters.length) {
+              e.target.dataset.triggered = false;
             }
-          }, 30);
-        });
-      };
-
-      const randomNumber = (min, max) => {
-        let randNumber = Math.floor(Math.random() * (max - min) + min);
-        //    randNumberShow = Math.floor(Math.random() * 10);
-        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '@', '%', '&', '!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        let randNumberShow = letters[Math.floor(Math.random() * 40)];
-        return { randNumber, randNumberShow };
-      };
-      document.querySelector(".title_container").addEventListener("click", e => {
-        if (cnt_end == 15) {
-          console.log("random effect is end!");
-          for (let f = 0; f < 7; f++) {
-            party.confetti(document.querySelector('body'));
-          }
-          document.querySelector("body").classList.add("chgBg");
-          document.querySelector(".button__google").style.display = "none";
-          document.querySelector(".button__lucky").style.display = "none";
-          document.querySelector(".like-btn").style.display = "flex";
-          document.querySelector(".fa-apple").style.display = "block";
-        } else {
-          let img_logo = document.querySelector('.logo_clone');
-          img_logo.style.display = "none";
-          let title_items = document.querySelectorAll(".title_container__item");
-          for (let i = 0; i < title_items.length; i++) {
-            title_items[i].style.display = "block";
-          }
-          let mrCtrl = document.querySelector('.title_container')
-          mrCtrl.style.marginBottom = '0px';
-          mrCtrl.style.marginTop = '150px';
-
-          if (e.target.dataset.triggered === "true") return;
-          e.target.dataset.triggered = true;
-          shuffleText(document.querySelector(".title_container"), e);
-          //document.querySelector("body").style.background = "linear-gradient(to left, #000000, #434343)";
-        }
-      });
-
-      //modal_fucntion
-      const fDialog = document.querySelector('dialog');
-      const btn = document.querySelector('#mOpenBtn');
-      const btnClose = document.querySelectorAll('.close');
-      const btnGift = document.querySelector('.giftBox');
-
-      btn.addEventListener('click', () => openModal());
-      btnClose.forEach((elm) => elm.addEventListener('click', () => closeModal()));
-      fDialog.addEventListener('click', (e) => detectBackdropClick(e));
-      btnGift.addEventListener('click', () => openModal2());
-
-      openModal = () => {
-        fDialog.showModal();
-      }
-
-      openModal2 = () => {
-        fDialog.classList.add("dialog__animate-out");
-        fDialog.addEventListener('animationend', handleClose, false);
-      }
-
-      closeModal = () => {
-        fDialog.classList.add("dialog__animate-out");
-        fDialog.addEventListener('animationend', handleClose, false);
-      }
-
-      handleClose = () => {
-        fDialog.classList.remove("dialog__animate-out");
-        fDialog.removeEventListener('animationend', handleClose, false);
-        fDialog.close();
-      }
-
-      detectBackdropClick = (event) => {
-        if (event.target === fDialog) {
-          closeModal();
-        }
-      }
-
-      //calendar 
-      const init = {
-        monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        today: new Date(),
-        monForChange: new Date().getMonth(),
-        activeDate: new Date(),
-        getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-        getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-        nextMonth: function () {
-          let d = new Date();
-          d.setDate(1);
-          d.setMonth(++this.monForChange);
-          this.activeDate = d;
-          return d;
-        },
-        prevMonth: function () {
-          let d = new Date();
-          d.setDate(1);
-          d.setMonth(--this.monForChange);
-          this.activeDate = d;
-          return d;
-        },
-        addZero: (num) => (num < 10) ? '0' + num : num,
-        activeDTag: null,
-        getIndex: function (node) {
-          let index = 0;
-          while (node = node.previousElementSibling) {
-            index++;
-          }
-          return index;
-        }
-      };
-
-      const $calBody = document.querySelector('.cal-body');
-      const $btnNext = document.querySelector('.btn-cal.next');
-      const $btnPrev = document.querySelector('.btn-cal.prev');
-
-      /**
-       * @param {number} date
-       * @param {number} dayIn
-      */
-      function loadDate(date, dayIn) {
-        document.querySelector('.cal-date').textContent = date;
-        document.querySelector('.cal-day').textContent = init.dayList[dayIn];
-      }
-
-      /**
-       * @param {date} fullDate
-       */
-      function loadYYMM(fullDate) {
-        let yy = fullDate.getFullYear();
-        let mm = fullDate.getMonth();
-        let firstDay = init.getFirstDay(yy, mm);
-        let lastDay = init.getLastDay(yy, mm);
-        let markToday;  // for marking today date
-
-        if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-          markToday = init.today.getDate();
-        }
-
-        document.querySelector('.cal-month').textContent = init.monList[mm];
-        document.querySelector('.cal-year').textContent = yy;
-
-        let trtd = '';
-        let startCount;
-        let countDay = 0;
-        for (let i = 0; i < 6; i++) {
-          trtd += '<tr>';
-          for (let j = 0; j < 7; j++) {
-            if (i === 0 && !startCount && j === firstDay.getDay()) {
-              startCount = 1;
-            }
-            if (!startCount) {
-              trtd += '<td>'
-            } else {
-              let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-              trtd += '<td class="day';
-              trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-              trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-            }
-            trtd += (startCount) ? ++countDay : '';
-            if (countDay === lastDay.getDate()) {
-              startCount = 0;
-            }
-            trtd += '</td>';
-          }
-          trtd += '</tr>';
-        }
-        $calBody.innerHTML = trtd;
-      }
-
-      /**
-       * @param {string} val
-       */
-      function createNewList(val) {
-        let id = new Date().getTime() + '';
-        let yy = init.activeDate.getFullYear();
-        let mm = init.activeDate.getMonth() + 1;
-        let dd = init.activeDate.getDate();
-        const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
-
-        let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
-
-        let eventData = {};
-        eventData['date'] = date;
-        eventData['memo'] = val;
-        eventData['complete'] = false;
-        eventData['id'] = id;
-        init.event.push(eventData);
-        $todoList.appendChild(createLi(id, val, date));
-      }
-
-      loadYYMM(init.today);
-      loadDate(init.today.getDate(), init.today.getDay());
-
-      $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
-      $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
-      let countFalse = 0;
-      $calBody.addEventListener('click', (e) => {
-        if (e.target.classList.contains('day')) {
-          if (init.activeDTag) {
-            init.activeDTag.classList.remove('day-active');
-          }
-          let day = Number(e.target.textContent);
-          loadDate(day, e.target.cellIndex);
-          e.target.classList.add('day-active');
-          init.activeDTag = e.target;
-          init.activeDate.setDate(day);
-          //reloadTodo();
-          if (e.target.dataset.fdate == '2021.01.01') {
-            createTag(e);
+            clearInterval(interv);
+            cnt_end++;
           } else {
-            countFalse++;
-            console.log(countFalse);
-            if (countFalse >= 3) {
-              alert("false");
-            }
+            letter.textContent = randNumber.randNumberShow;
           }
-        }
+        }, 30);
       });
+    };
 
-      function createTag(corrTarget) {
-        let tagObj = corrTarget.target;
-        tagObj.innerHTML = '<i class = "fab fa-airbnb fa-2x selIcon testAni"></i>';
-        document.querySelector(".day-active").style.background = "none";
-        setTimeout(function () {
-          document.querySelector(".selIcon").classList.remove('testAni');
-        }, 1000)
-        let tarBtn = document.querySelector('.btnNext');
-        tarBtn.disabled = false;
-        tarBtn.classList.remove('btn-outline-secondary');
-        tarBtn.classList.add('btn-success');
+    const randomNumber = (min, max) => {
+      let randNumber = Math.floor(Math.random() * (max - min) + min);
+      //    randNumberShow = Math.floor(Math.random() * 10);
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '@', '%', '&', '!', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      let randNumberShow = letters[Math.floor(Math.random() * 40)];
+      return { randNumber, randNumberShow };
+    };
+    document.querySelector(".title_container").addEventListener("click", e => {
+      if (cnt_end == 15) {
+        console.log("random effect is end!");
+        for (let f = 0; f < 7; f++) {
+          party.confetti(document.querySelector('body'));
+        }
+        document.querySelector("body").classList.add("chgBg");
+        document.querySelector(".button__google").style.display = "none";
+        document.querySelector(".button__lucky").style.display = "none";
+        document.querySelector(".like-btn").style.display = "flex";
+        document.querySelector(".fa-apple").style.display = "block";
+      } else {
+        let img_logo = document.querySelector('.logo_clone');
+        img_logo.style.display = "none";
+        let title_items = document.querySelectorAll(".title_container__item");
+        for (let i = 0; i < title_items.length; i++) {
+          title_items[i].style.display = "block";
+        }
+        let mrCtrl = document.querySelector('.title_container')
+        mrCtrl.style.marginBottom = '0px';
+        mrCtrl.style.marginTop = '150px';
 
+        if (e.target.dataset.triggered === "true") return;
+        e.target.dataset.triggered = true;
+        shuffleText(document.querySelector(".title_container"), e);
+        //document.querySelector("body").style.background = "linear-gradient(to left, #000000, #434343)";
+      }
+    });
+
+    //modal_fucntion
+    const fDialog = document.querySelector('dialog');
+    const btn = document.querySelector('#mOpenBtn');
+    const btnClose = document.querySelectorAll('.close');
+    const btnGift = document.querySelector('.giftBox');
+
+    btn.addEventListener('click', () => openModal());
+    btnClose.forEach((elm) => elm.addEventListener('click', () => closeModal()));
+    fDialog.addEventListener('click', (e) => detectBackdropClick(e));
+    btnGift.addEventListener('click', () => openModal2());
+
+    openModal = () => {
+      fDialog.showModal();
+    }
+
+    openModal2 = () => {
+      fDialog.classList.add("dialog__animate-out");
+      fDialog.addEventListener('animationend', handleClose, false);
+    }
+
+    closeModal = () => {
+      fDialog.classList.add("dialog__animate-out");
+      fDialog.addEventListener('animationend', handleClose, false);
+    }
+
+    handleClose = () => {
+      fDialog.classList.remove("dialog__animate-out");
+      fDialog.removeEventListener('animationend', handleClose, false);
+      fDialog.close();
+    }
+
+    detectBackdropClick = (event) => {
+      if (event.target === fDialog) {
+        closeModal();
+      }
+    }
+
+    //calendar 
+    const init = {
+      monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      today: new Date(),
+      monForChange: new Date().getMonth(),
+      activeDate: new Date(),
+      getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+      getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+      nextMonth: function () {
+        let d = new Date();
+        d.setDate(1);
+        d.setMonth(++this.monForChange);
+        this.activeDate = d;
+        return d;
+      },
+      prevMonth: function () {
+        let d = new Date();
+        d.setDate(1);
+        d.setMonth(--this.monForChange);
+        this.activeDate = d;
+        return d;
+      },
+      addZero: (num) => (num < 10) ? '0' + num : num,
+      activeDTag: null,
+      getIndex: function (node) {
+        let index = 0;
+        while (node = node.previousElementSibling) {
+          index++;
+        }
+        return index;
+      }
+    };
+
+    const $calBody = document.querySelector('.cal-body');
+    const $btnNext = document.querySelector('.btn-cal.next');
+    const $btnPrev = document.querySelector('.btn-cal.prev');
+
+    /**
+     * @param {number} date
+     * @param {number} dayIn
+    */
+    function loadDate(date, dayIn) {
+      document.querySelector('.cal-date').textContent = date;
+      document.querySelector('.cal-day').textContent = init.dayList[dayIn];
+    }
+
+    /**
+     * @param {date} fullDate
+     */
+    function loadYYMM(fullDate) {
+      let yy = fullDate.getFullYear();
+      let mm = fullDate.getMonth();
+      let firstDay = init.getFirstDay(yy, mm);
+      let lastDay = init.getLastDay(yy, mm);
+      let markToday;  // for marking today date
+
+      if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
+        markToday = init.today.getDate();
       }
 
-      //secondModal function
-      // let testtitle = document.querySelector('#exampleModalLabel');
-      // testtitle.addEventListener('click', changeSize);
-      // function changeSize(){
-      //   testtitle.style.transform = "scale(200%)";
-      //   //transform: scale(200%);
-      // }
-      
+      document.querySelector('.cal-month').textContent = init.monList[mm];
+      document.querySelector('.cal-year').textContent = yy;
 
-      //복수의 문자들에 개별적으로 이벤트를 줘야함.
-      //객체를 반복문을 통해서 가져오는 건 가능했지만, 이벤트를 실행하는 타이밍에 변수에는 마지막 객체만이 담겨 있다. 
-
-      let currentDroppable = null;
-      let indiChar = null;
-      let idSelec_num = 0;
-      
-      for (let d = 0; d < 6; d++) {
-        let idSelec = '#part_';
-        idSelec_num += 1;
-        idSelec += idSelec_num
-        
-        indiChar=document.querySelector(idSelec);
-        indiChar.onmousedown = function (event) {
-          let shiftX = event.clientX - this.getBoundingClientRect().left;
-          let shiftY = event.clientY - this.getBoundingClientRect().top;
-
-          this.style.position = 'absolute';
-          this.style.zIndex = 1200;
-          document.body.append(this);
-
-          moveAt(event.pageX, event.pageY, this);
-
-          function moveAt(pageX, pageY, obj) {
-            obj.style.left = pageX - shiftX + 'px';
-            obj.style.top = pageY - shiftY + 'px';
+      let trtd = '';
+      let startCount;
+      let countDay = 0;
+      for (let i = 0; i < 6; i++) {
+        trtd += '<tr>';
+        for (let j = 0; j < 7; j++) {
+          if (i === 0 && !startCount && j === firstDay.getDay()) {
+            startCount = 1;
           }
+          if (!startCount) {
+            trtd += '<td>'
+          } else {
+            let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+            trtd += '<td class="day';
+            trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
+            trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+          }
+          trtd += (startCount) ? ++countDay : '';
+          if (countDay === lastDay.getDate()) {
+            startCount = 0;
+          }
+          trtd += '</td>';
+        }
+        trtd += '</tr>';
+      }
+      $calBody.innerHTML = trtd;
+    }
 
-           function onMouseMove(event) {
-           moveAt(event.pageX, event.pageY, this);
+    /**
+     * @param {string} val
+     */
+    function createNewList(val) {
+      let id = new Date().getTime() + '';
+      let yy = init.activeDate.getFullYear();
+      let mm = init.activeDate.getMonth() + 1;
+      let dd = init.activeDate.getDate();
+      const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
 
-           this.hidden = true;
-           let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-           this.hidden = false;
+      let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
 
-           if (!elemBelow) return;
+      let eventData = {};
+      eventData['date'] = date;
+      eventData['memo'] = val;
+      eventData['complete'] = false;
+      eventData['id'] = id;
+      init.event.push(eventData);
+      $todoList.appendChild(createLi(id, val, date));
+    }
 
-           let droppableBelow = elemBelow.closest('.droppable');
-           if (currentDroppable != droppableBelow) {
-             if (currentDroppable) { // null when we were not over a droppable before this event
-               leaveDroppable(currentDroppable);
-             }
-             currentDroppable = droppableBelow;
-             if (currentDroppable) { // null if we're not coming over a droppable now
-               // (maybe just left the droppable)
-               enterDroppable(currentDroppable);
-             }
-           }
-         }
+    loadYYMM(init.today);
+    loadDate(init.today.getDate(), init.today.getDay());
 
-        
-         document.addEventListener('mousemove', onMouseMove);
-
-         this.onmouseup = function () {
-           document.removeEventListener('mousemove', onMouseMove);
-           this.onmouseup = null;
-         };
-
+    $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
+    $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
+    let countFalse = 0;
+    $calBody.addEventListener('click', (e) => {
+      if (e.target.classList.contains('day')) {
+        if (init.activeDTag) {
+          init.activeDTag.classList.remove('day-active');
+        }
+        let day = Number(e.target.textContent);
+        loadDate(day, e.target.cellIndex);
+        e.target.classList.add('day-active');
+        init.activeDTag = e.target;
+        init.activeDate.setDate(day);
+        //reloadTodo();
+        if (e.target.dataset.fdate == '2021.01.01') {
+          createTag(e);
+        } else {
+          countFalse++;
+          console.log(countFalse);
+          if (countFalse >= 3) {
+            alert("false");
+          }
         }
       }
-      
-      //indiChar.onmousedown = function (event) {
-      //  console.log(indiChar);
+    });
 
-        // let shiftX = event.clientX - indiChar.getBoundingClientRect().left;
-        // let shiftY = event.clientY - indiChar.getBoundingClientRect().top;
+    function createTag(corrTarget) {
+      let tagObj = corrTarget.target;
+      tagObj.innerHTML = '<i class = "fab fa-airbnb fa-2x selIcon testAni"></i>';
+      document.querySelector(".day-active").style.background = "none";
+      setTimeout(function () {
+        document.querySelector(".selIcon").classList.remove('testAni');
+      }, 1000)
+      let tarBtn = document.querySelector('.btnNext');
+      tarBtn.disabled = false;
+      tarBtn.classList.remove('btn-outline-secondary');
+      tarBtn.classList.add('btn-success');
 
-        // indiChar.style.position = 'absolute';
-        // indiChar.style.zIndex = 1200;
-        // document.body.append(indiChar);
+    }
 
-        // moveAt(event.pageX, event.pageY);
-
-        // function moveAt(pageX, pageY) {
-        //   indiChar.style.left = pageX - shiftX + 'px';
-        //   indiChar.style.top = pageY - shiftY + 'px';
-        // }
-
-        // function onMouseMove(event) {
-        //   moveAt(event.pageX, event.pageY);
-
-        //   indiChar.hidden = true;
-        //   let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        //   indiChar.hidden = false;
-
-        //   if (!elemBelow) return;
-
-        //   let droppableBelow = elemBelow.closest('.droppable');
-        //   if (currentDroppable != droppableBelow) {
-        //     if (currentDroppable) { // null when we were not over a droppable before this event
-        //       leaveDroppable(currentDroppable);
-        //     }
-        //     currentDroppable = droppableBelow;
-        //     if (currentDroppable) { // null if we're not coming over a droppable now
-        //       // (maybe just left the droppable)
-        //       enterDroppable(currentDroppable);
-        //     }
-        //   }
-        // }
-
-        
-        // document.addEventListener('mousemove', onMouseMove);
-
-        // indiChar.onmouseup = function () {
-        //   document.removeEventListener('mousemove', onMouseMove);
-        //   indiChar.onmouseup = null;
-        // };
-      //}
-
-      //https://ko.javascript.info/mouse-drag-and-drop reference  
-        
+    //secondModal function
+    // let testtitle = document.querySelector('#exampleModalLabel');
+    // testtitle.addEventListener('click', changeSize);
+    // function changeSize(){
+    //   testtitle.style.transform = "scale(200%)";
+    //   //transform: scale(200%);
+    // }
 
 
-    </script>
-  </body>
+    //복수의 문자들에 개별적으로 이벤트를 줘야함.
+    //객체를 반복문을 통해서 가져오는 건 가능했지만, 이벤트를 실행하는 타이밍에 변수에는 마지막 객체만이 담겨 있다. 
 
-  </html>
+    //indiChar.onmousedown = function (event) {
+    //  console.log(indiChar);
+
+    // let shiftX = event.clientX - indiChar.getBoundingClientRect().left;
+    // let shiftY = event.clientY - indiChar.getBoundingClientRect().top;
+
+    // indiChar.style.position = 'absolute';
+    // indiChar.style.zIndex = 1200;
+    // document.body.append(indiChar);
+
+    // moveAt(event.pageX, event.pageY);
+
+    // function moveAt(pageX, pageY) {
+    //   indiChar.style.left = pageX - shiftX + 'px';
+    //   indiChar.style.top = pageY - shiftY + 'px';
+    // }
+
+    // function onMouseMove(event) {
+    //   moveAt(event.pageX, event.pageY);
+
+    //   indiChar.hidden = true;
+    //   let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    //   indiChar.hidden = false;
+
+    //   if (!elemBelow) return;
+
+    //   let droppableBelow = elemBelow.closest('.droppable');
+    //   if (currentDroppable != droppableBelow) {
+    //     if (currentDroppable) { // null when we were not over a droppable before this event
+    //       leaveDroppable(currentDroppable);
+    //     }
+    //     currentDroppable = droppableBelow;
+    //     if (currentDroppable) { // null if we're not coming over a droppable now
+    //       // (maybe just left the droppable)
+    //       enterDroppable(currentDroppable);
+    //     }
+    //   }
+    // }
+
+
+    // document.addEventListener('mousemove', onMouseMove);
+
+    // indiChar.onmouseup = function () {
+    //   document.removeEventListener('mousemove', onMouseMove);
+    //   indiChar.onmouseup = null;
+    // };
+    //}
+
+    //https://ko.javascript.info/mouse-drag-and-drop reference  
+
+    function onClickPuzz() {
+     document.querySelector('#q3ModalContent').style.height = '100%';
+     document.querySelector('#q3Container').innerHTML = '<iframe id="puzFrame" src="./puzzle/puzzle.html"></iframe>';
+    }
+  </script>
+</body>
+
+</html>
