@@ -1,5 +1,9 @@
 크롬 아이콘 다운로드 장소
 https://iconscout.com/icon/google-chrome-5
+
+https://macosicons.com/
+octaviotti on 19/01/1970
+
 -> 추후에 다운받은 후에 usb저장, 로컬로 옮길 것
 
 dock에서 앱 제거
