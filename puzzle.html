@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script
+        src="https://www.cssscript.com/demo/simple-typewriter-effect-pure-javascript-typewriterjs/typewriter.js"></script>
 
     <style>
         /*about puzzle*/
@@ -87,11 +89,43 @@
             background-size: contain;
         }
 
-        #srtBtn{
+        #srtBtn {
             margin-top: 7%;
             margin-left: 37%;
         }
 
+        .goWin {
+            animation: appear_win 1.8s normal forwards;
+            text-align: center;
+            padding-top: 20%;
+            font-size: 50px;
+            width: 95%;
+            height: 95%;
+        }
+
+        @keyframes appear_win {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hiddenCont{
+            display: none;
+        }
+
+        .congWin{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 5%;
+        }
+
+        .btnAppear{
+            animation: appear_win 1.8s normal forwards;
+        }
     </style>
     <title>puzzle</title>
 </head>
@@ -99,16 +133,14 @@
 <body>
     <div id="puzWrapper">
         <div class="topDes" id="moveCon">
-            <!--後でfontAwesomeのアイコンに変更-->
             <span>Moves : </span>
             <span id="totalMove">0</span>
         </div>
         <div class="topDes" id="timeCon">
-            <!--後でfontAwesomeのアイコンに変更-->
             <span>Time : </span>
             <span id="remTime">--:--</span>
         </div>
-        <div class="nes-pointer nes-container with-title is-centered" >
+        <div class="nes-pointer nes-container with-title is-centered">
             <p class="title">PUZZLE</p>
             <div id="grid_tab">
                 <div class="puzPiece" id="p11" onclick="mov_pis('p11')">11</div>
@@ -124,6 +156,20 @@
         </div>
         <div class="nes-btn" name="not_yet" id="srtBtn" onclick="strt_puzz()">START</div>
     </div>
+    <div class="hiddenCont">
+        <h2 class="btnAppear" style="text-align: center; margin-bottom: 5%;">Congratulations!</h2>
+        <div class="btnAppear" style="margin-left: 30%; margin-bottom: 5%;">
+            <i class="nes-icon is-large heart"></i>
+            <i class="nes-icon is-large heart"></i>
+            <i class="nes-icon trophy is-large"></i>
+            <i class="nes-icon is-large heart"></i>
+            <i class="nes-icon is-large heart"></i>
+        </div>
+        <p class="congWin" id="cong1"></p>
+        <button type="button" class="nes-btn is-success btnAppear" style="margin-left: 43.5%;">FINISH</button>
+    </div>
+
+
     <script>
         //사전 준비
         var selNames = new Array('#p11', '#p12', '#p13', '#p21', '#p22', '#p23', '#p31', '#p32', '#p33');
@@ -133,15 +179,17 @@
         };
 
         var num_mvs = 0;
+        var lim_mvs = 99;
+        //var lim_mvs = 29;
         var left_time = 300;
-        //var left_time = 3;
+        //var left_time = 10;
         var total_try = 0;
         var objNm = document.querySelector('#totalMove');
         var srtBtn = document.querySelector('#srtBtn');
 
 
         function strt_puzz() {
-            chk_condi(num_mvs, total_try, left_time);
+            chk_condi(num_mvs, left_time);
             //shuffle of pieces
             let arr_piec = new Array();
             while (arr_piec.length < 9) {
@@ -196,39 +244,44 @@
                     if (remSec.toString().length == 1) {
                         remSec = '0' + remSec;
                     };
+                    
                     if (left_time <= 0) {
                         clearInterval(sIobj);
-                        chk_condi(num_mvs, total_try, left_time);
+                        chk_condi(num_mvs, left_time);
                         //남은 시간 전부 소진한 후의 액션
                         //이 경우 굳이 리턴 안해줘도 전역변수에 시간을 담았기에,
                         //해당 변수를 하기의 함수의 매개변수로 바로 사용하면 됨
+                    }else if(left_time <= 5){
+                        document.getElementById('remTime').style.color = 'red';
+                    }else{
+                        document.getElementById('remTime').textContent = remMin + ':' + remSec;
+                        document.getElementById('remTime').style.color = 'black';
                     }
-                    document.getElementById('remTime').textContent = remMin + ':' + remSec;
                 }, 1000);
             }
 
             objNm.textContent = '0';
             num_mvs = 0;
+            document.getElementById('totalMove').style.color = 'black';
             srtBtn.setAttribute('name', 'started');
             if (srtBtn.getAttribute('name') == 'started') {
                 srtBtn.classList.remove("is-primary");
-                
-                if (total_try==1) {
+
+                if (total_try == 1) {
                     srtBtn.classList.remove("is-warning");
                     srtBtn.classList.add("is-error");
-                }else if(total_try>=2){
+                } else if (total_try >= 2) {
                     srtBtn.classList.remove("is-error");
                     srtBtn.classList.add("is-disabled");
                     srtBtn.onclick = null;
-                }else{
+                } else {
                     srtBtn.classList.add("is-warning");
 
                 }
                 srtBtn.textContent = 'RETRY';
             }
 
-            total_try ++;
-            console.log(total_try);
+            total_try++;
 
         }
 
@@ -236,7 +289,7 @@
         function mov_pis(currArea) {
             let gStatus = srtBtn.getAttribute('name');
             if (gStatus == 'started') {
-                chk_condi(num_mvs, total_try, left_time);
+                chk_condi(num_mvs, left_time);
                 switch (currArea) {
                     case 'p11':
                         if (arr_objs[1].textContent == '11') {
@@ -268,7 +321,7 @@
                         let resVal = chk_compl(selNames);
 
                         if (resVal) {
-                            //congratulations event
+                            congWin();
                         }
 
                         break;
@@ -593,15 +646,31 @@
 
         }
 
-        function chk_condi(mo, tr, ti) {
-            
-            if (mo >= 100 || tr >= 4 || ti <= 0) {
-                document.querySelector('#puzWrapper').style.display = 'none';
+        function chk_condi(mo, ti) {
+            let resul_com = chk_compl(selNames);
+            if ((mo >= lim_mvs || ti <= 0) && !resul_com) {
+                let goWin = document.querySelector('#puzWrapper');
+                goWin.classList.add('nes-container');
+                goWin.classList.add('is-dark');
+                goWin.classList.add('goWin');
+                goWin.style.margin = 'auto';
+                goWin.removeAttribute('id');
+                goWin.innerHTML = '<p id = "twOver"></p>'
+
+                let chk_typing = document.getElementById('twOver');
+                let chk_typewriter = new Typewriter(chk_typing, {
+                    loop: false
+                });
+
+                chk_typewriter.typeString('GAME OVER...')
+                    .pauseFor(1000)
+                chk_typewriter.start();
+
             }
-            
-            // if(mo >= 9){
-            //     document.getElementById('totalMove').style.color = 'red';
-            // }
+
+            if(mo >= (lim_mvs-5)){
+                 document.getElementById('totalMove').style.color = 'red';
+            }
 
             // if(ti <= 1){
             //     document.getElementById('remTime').style.color = 'red';
@@ -620,10 +689,42 @@
         //     }
         // }
         //https://nostalgic-css.github.io/NES.css/ cssFramework
-        //
-        //iframe tag 사용하여 event.html에 붙여넣기, event.html에 3번째 퀴즈 영역(모달) 추가필요.
 
-        
+        function congWin() {
+            let goWin = document.querySelector('#puzWrapper');
+            goWin.remove();
+            let winCmt = document.querySelector('.hiddenCont');
+            winCmt.classList.remove("hiddenCont");
+            winCmt.classList.add('nes-container');
+            winCmt.classList.add('is-dark');
+            winCmt.style.margin = 'auto';
+            winCmt.style.width = '95%';
+            winCmt.style.height = '95%';
+            winCmt.style.paddingTop = '20%';
+            winCmt.style.paddingBottom = '20%';
+
+
+            let chk_typing = document.getElementById('cong1');
+            let chk_typewriter = new Typewriter(chk_typing, {
+                loop: false
+            });
+            chk_typewriter
+                .typeString('please push the FINISH button.')
+                .pauseFor(1000)
+            chk_typewriter.start();
+
+            // chk_typing = document.getElementById('cong2');
+            // chk_typewriter = new Typewriter(chk_typing, {
+            //     loop: false
+            // });
+            // chk_typewriter.typeString('please push the FINISH button.')
+            //     .pauseFor(800)
+            // chk_typewriter.start();
+
+        }
+
+
+
 
     </script>
 </body>
