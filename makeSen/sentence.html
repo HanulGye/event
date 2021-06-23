@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         /*second question*/
         .selArea {
             margin-left: 22%;
-            height: 150px;
+            height: 100px;
         }
 
         .answArea {
-            margin: 7%;
+            margin: 5% 10% 10% 10%;
         }
 
         .area_corr {
             border-style: dotted;
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             display: inline-block;
         }
 
         .underline_noAni {
-            background-image: linear-gradient(to right, red 0%, red 100%);
+            color: white;
+            background-image: linear-gradient(to right, rgb(255, 142, 142) 0%, rgb(189, 249, 4) 100%);
             background-repeat: no-repeat;
             background-size: 100% 20%;
             background-position: bottom;
-            font-size: 28px;
+            font-size: 20px;
         }
 
         .dragObj {
@@ -40,26 +43,32 @@
 
         #part_1 {
             color: #01B392;
+            animation-delay: 0.4s;
         }
 
         #part_2 {
             color: #E92600;
+            animation-delay: 0.1s;
         }
 
         #part_3 {
             color: #7BB7F8;
+            animation-delay: 0.3s;
         }
 
         #part_4 {
             color: #FDF360;
+            animation-delay: 0.2s;
         }
 
         #part_5 {
             color: #FF9F2F;
+            animation-delay: 0.6s;
         }
 
         #part_6 {
             color: #643890;
+            animation-delay: 0.5s;
         }
 
         .blankArea {
@@ -67,24 +76,69 @@
             height: 80px;
             display: inline-block;
         }
+
+        .obj_ani {
+            animation-name: charAni;
+            animation-duration: 1s;
+            animation-play-state: paused;
+
+        }
+
+        @keyframes charAni {
+
+            0%,
+            10% {
+                transform: scale(1);
+                opacity: .5;
+            }
+
+            45% {
+                transform: scale(.2) rotate(30deg);
+                opacity: .75;
+            }
+
+            50% {
+                transform: scale(2) rotate(-37.5deg);
+                opacity: 1;
+                text-shadow: 2px 2px 6px rgba(75, 75, 75, 0.5);
+            }
+
+            90%,
+            95% {
+                transform: scale(1) rotate(10deg);
+                text-shadow: none;
+            }
+
+            100% {
+                transform: rotate(-2.5deg);
+            }
+
+        }
+
+        .font_sent{
+            font-family: 'Karla', sans-serif;
+            margin-left: 11%;
+            font-size: 28px;
+            font-weight: 700;
+        }
     </style>
 </head>
 
 <body>
-    <h5 style="margin-left: 7%;">Make a sentence from given letters <strong class="underline_noAni">empathize</strong>
-    </h5>
+    <p class="font_sent">Make a sentence from given letters </p>
+    <p style="margin-left: 11%; margin-bottom: 5%;"><strong class="underline_noAni">HINT : What I always want to say to you&nbsp;&nbsp;&nbsp;&nbsp;</strong></p>
     <div class="selArea">
-        <div class="dragObj" id="part_1">고</div>
+        <div class="dragObj obj_ani" id="part_1">고</div>
         <div class="blankArea"></div>
-        <div class="dragObj" id="part_2">언</div>
+        <div class="dragObj obj_ani" id="part_2">언</div>
         <div class="blankArea"></div>
-        <div class="dragObj" id="part_3">나</div>
+        <div class="dragObj obj_ani" id="part_3">나</div>
         <div class="blankArea"></div>
-        <div class="dragObj" id="part_4">제</div>
+        <div class="dragObj obj_ani" id="part_4">제</div>
         <div class="blankArea"></div>
-        <div class="dragObj" id="part_5">워</div>
+        <div class="dragObj obj_ani" id="part_5">워</div>
         <div class="blankArea"></div>
-        <div class="dragObj" id="part_6">마</div>
+        <div class="dragObj obj_ani" id="part_6">마</div>
     </div>
     <div class="answArea">
         <div class="area_corr" id="c2"></div>
@@ -119,7 +173,7 @@
 
             function onMouseUp(event) {
                 finishDrag();
-                console.log(colle_rig);
+                //console.log(colle_rig);
             };
 
             function onMouseMove(event) {
@@ -267,10 +321,14 @@
 
             function finJudge() {
                 if (colle_rig.includes('c1') && colle_rig.includes('c2') && colle_rig.includes('c3') && colle_rig.includes('c4') && colle_rig.includes('c5') && colle_rig.includes('c6')) {
-                    console.log('complete');
-                    //성공시 보여줄 내용 + 버튼 활성화 
-                    //메인페이지에 현재 페이지 삽입
-                    
+                    let objArray = document.querySelectorAll('.obj_ani');
+                    for (let i = 0; i < objArray.length; i++) {
+                        objArray[i].style.animationPlayState = 'running';
+                    }
+                    setTimeout(function () {
+                        parent.postMessage('fin2nd','*');
+                    }, 2000)
+
                 }
             }
 
