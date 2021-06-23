@@ -39,8 +39,8 @@
 
         .puzPiece {
             padding: 2px;
+            font-size: 0px;
             /*
-            font-size: 0rem;
             */
         }
 
@@ -166,7 +166,7 @@
             <i class="nes-icon is-large heart"></i>
         </div>
         <p class="congWin" id="cong1"></p>
-        <button type="button" class="nes-btn is-success btnAppear" style="margin-left: 43.5%;">FINISH</button>
+        <button type="button" class="nes-btn is-success btnAppear" style="margin-left: 43.5%;" onclick="showPic()">FINISH</button>
     </div>
 
 
@@ -671,28 +671,14 @@
             if(mo >= (lim_mvs-5)){
                  document.getElementById('totalMove').style.color = 'red';
             }
-
-            // if(ti <= 1){
-            //     document.getElementById('remTime').style.color = 'red';
-            // }
         }
 
-        //남은 과제
-        // if (움직인횟수 > 기준횟수 || 남은시간 = 0 ) {
-        //     let result = chk_compl(param);
-        //     if(!result){
-        //         완성이 안됐을 때의 이벤트
-        //     }else{
-        //         완성 됐을 때 코드, 위의 성공시의 코드와 중복되지 않는가?
-        //         무엇이 다른가. 
-        //         조건의 추가?
-        //     }
-        // }
         //https://nostalgic-css.github.io/NES.css/ cssFramework
 
         function congWin() {
             let goWin = document.querySelector('#puzWrapper');
             goWin.remove();
+            document.querySelector('body').style.backgroundColor = '#202020';
             let winCmt = document.querySelector('.hiddenCont');
             winCmt.classList.remove("hiddenCont");
             winCmt.classList.add('nes-container');
@@ -703,6 +689,7 @@
             winCmt.style.paddingTop = '20%';
             winCmt.style.paddingBottom = '20%';
 
+            parent.postMessage('fin3rd','*');
 
             let chk_typing = document.getElementById('cong1');
             let chk_typewriter = new Typewriter(chk_typing, {
@@ -713,18 +700,11 @@
                 .pauseFor(1000)
             chk_typewriter.start();
 
-            // chk_typing = document.getElementById('cong2');
-            // chk_typewriter = new Typewriter(chk_typing, {
-            //     loop: false
-            // });
-            // chk_typewriter.typeString('please push the FINISH button.')
-            //     .pauseFor(800)
-            // chk_typewriter.start();
-
         }
 
-
-
+        function showPic() {
+            parent.postMessage('fin3rd_2','*');
+        }
 
     </script>
 </body>
