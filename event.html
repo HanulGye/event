@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link href="http://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
   <script
@@ -17,6 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <style>
     .header-top__right {
       margin-top: 13px;
@@ -73,9 +73,11 @@
     }
 
     .title_container__item:nth-child(1) {
+      /*
       font-size: 100px;
+      */
       color: #4285F4;
-      margin-top: -10px;
+      margin-top: 10px;
     }
 
     .title_container__item:nth-child(4) {
@@ -247,14 +249,14 @@
       opacity: 0;
       z-index: 2;
     }
-
-    .like-btn:checked+.fa-apple {
+    
+    .like-btn:checked+.fa-heart {
       color: red;
       -webkit-text-stroke: 1px red;
       animation: .7s linear burst;
     }
 
-    .fa-apple {
+    .fa-heart {
       display: none;
       position: absolute;
       font-size: 3rem;
@@ -547,7 +549,7 @@
 
     .descrip_q1 {
       text-align: center;
-      font-family: 'Digital-7 Mono', sans-serif;
+      font-family: 'Karla', sans-serif;
       font-size: 30px;
       font-weight: 700;
     }
@@ -606,7 +608,7 @@
     /*common notice*/
     .notice {
       width: 700px;
-      margin: auto;
+      margin: auto auto 5% auto;
       padding: 20px 20px 10px;
       border: 1px solid #ddd;
       cursor: default;
@@ -690,8 +692,32 @@
 
     /*fonts*/
     .digifonts {
-      font-family: 'Digital-7 Mono', sans-serif;
+      font-family: 'Karla', sans-serif;
+      font-weight: 900;
     }
+
+    .presenPic{
+      background-image: url("./place_present.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      animation-name: bgShow;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+      animation-direction: normal;
+    }
+
+    @keyframes bgShow {
+      0%{
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+
+
   </style>
   <title>Google</title>
 </head>
@@ -732,21 +758,21 @@
     <main class="center">
       <div class="center-container">
         <div class="title_container">
-          <div class="title_container__item">A</div>
-          <div class="title_container__item">B</div>
-          <div class="title_container__item">C</div>
-          <div class="title_container__item">D</div>
-          <div class="title_container__item">E</div>
-          <div class="title_container__item">&nbsp;</div>
-          <div class="title_container__item">&nbsp;</div>
-          <div class="title_container__item">F</div>
-          <div class="title_container__item">G</div>
           <div class="title_container__item">H</div>
+          <div class="title_container__item">A</div>
+          <div class="title_container__item">P</div>
+          <div class="title_container__item">P</div>
+          <div class="title_container__item">Y</div>
+          <div class="title_container__item">&nbsp;</div>
+          <div class="title_container__item">&nbsp;</div>
+          <div class="title_container__item">B</div>
           <div class="title_container__item">I</div>
-          <div class="title_container__item">J</div>
-          <div class="title_container__item">K</div>
-          <div class="title_container__item">L</div>
-          <div class="title_container__item">M</div>
+          <div class="title_container__item">R</div>
+          <div class="title_container__item">T</div>
+          <div class="title_container__item">H</div>
+          <div class="title_container__item">D</div>
+          <div class="title_container__item">A</div>
+          <div class="title_container__item">Y</div>
           <i class="logo_clone"></i>
         </div>
         <div class="center__search">
@@ -764,15 +790,17 @@
           <input type="submit" value="Google Search" class="button__google"></input>
           <input type="submit" value="I'm Feeling Lucky" class="button__lucky"></input>
           <input type="checkbox" class="like-btn" id="mOpenBtn">
-          <i class="fab fa-apple"></i>
+          <i class="fas fa-heart"></i>
           </input>
         </div>
-        <dialog open>
+        <dialog>
           <div class="dialog__inner">
             <button class="modal_btn button-close close">╳</button>
             <div class="dialog__content">
-              <h3>Native dialog element</h3>
-              <p>This is the new native dialog element</p>
+              <h2>Here's Your Present</h2>
+              <h5>There are 3 steps to receive a gift</h5>
+              <h5>You'll do fine, Good Luck!</h5>
+              <h5>Click the gift box</h5>
               <footer class="dialog__footer" data-bs-toggle="modal" data-bs-target="#quizModal1">
                 <i class="fas fa-gift fa-5x giftBox"></i>
               </footer>
@@ -788,7 +816,7 @@
                 <i class="fas fa-question-circle fa-3x"></i>
                 <h4 class="modal-title" id="exampleModalLabel">
                   <span> </span>
-                  <span class="underline digifonts">First Stage : Date from calendar</span>
+                  <span class="underline digifonts">FIRST STAGE : Date from calendar</span>
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -828,14 +856,12 @@
                   <!-- // .my-calendar -->
                 </div>
               </div>
-              <div class="modal-footer">
-                <!--
+              <!--
+                <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary btnNext" data-bs-toggle="modal"
                     data-bs-target="#quizModal2" data-bs-dismiss="modal" disabled>NEXT</button>
-                -->
-                <button type="button" class="btn btn-outline-secondary btnNext" data-bs-toggle="modal"
-                  data-bs-target="#quizModal2" data-bs-dismiss="modal" disabled>NEXT</button>
-              </div>
+                </div>
+              -->
             </div>
           </div>
         </div>
@@ -843,20 +869,17 @@
         <div class="modal fade" id="quizModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
           data-bs-backdrop="static" data-bs-keyboard="false">
           <div class="modal-dialog modal-xl">
-            <div class="modal-content">
+            <div class="modal-content" style="height: 90%;">
               <div class="modal-header">
                 <i class="fas fa-question-circle fa-3x"></i>
                 <h4 class="modal-title" id="exampleModalLabel">
                   <span> </span>
-                  <span class="underline digifonts">second Stage : Make a sentence</span>
+                  <span class="underline digifonts">SECOND STAGE : Make a sentence</span>
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary btnNext" disabled>NEXT</button>
+                <iframe src="./makeSen/sentence.html" style="width: 100%; height: 100%;"></iframe>
               </div>
             </div>
           </div>
@@ -866,15 +889,15 @@
           data-bs-backdrop="static" data-bs-keyboard="false">
           <div class="modal-dialog modal-xl">
             <div class="modal-content" id="q3ModalContent">
-              <div class="modal-header">
+              <div class="modal-header" id="q3Header">
                 <i class="fas fa-question-circle fa-3x"></i>
                 <h4 class="modal-title" id="exampleModalLabel">
                   <span> </span>
-                  <span class="underline">final Stage : PUZZLE</span>
+                  <span class="underline digifonts">FINAL STAGE : Puzzle</span>
                   </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="q3Body">
                 <div class="container" id="q3Container">
                   <div class="notice">
                     <h2 style="text-align: center;">How to play</h2>
@@ -890,8 +913,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="modal-footer">
               </div>
             </div>
           </div>
@@ -977,7 +998,7 @@
         document.querySelector(".button__google").style.display = "none";
         document.querySelector(".button__lucky").style.display = "none";
         document.querySelector(".like-btn").style.display = "flex";
-        document.querySelector(".fa-apple").style.display = "block";
+        document.querySelector(".fa-heart").style.display = "block";
       } else {
         let img_logo = document.querySelector('.logo_clone');
         img_logo.style.display = "none";
@@ -1177,7 +1198,7 @@
 
     function createTag(corrTarget) {
       let tagObj = corrTarget.target;
-      tagObj.innerHTML = '<i class = "fab fa-airbnb fa-2x selIcon testAni"></i>';
+      tagObj.innerHTML = '<i class = "far fa-kiss-wink-heart fa-2x selIcon testAni"></i>';
       document.querySelector(".day-active").style.background = "none";
       setTimeout(function () {
         document.querySelector(".selIcon").classList.remove('testAni');
@@ -1192,20 +1213,68 @@
         document.querySelector(".selIconMid").classList.add('selIconEnd');
         document.querySelector(".selIconMid").classList.remove('selIconMid');
       }, 2500)
-      //selIconEnd 
-      let tarBtn = document.querySelector('.btnNext');
-      tarBtn.disabled = false;
-      tarBtn.classList.remove('btn-outline-secondary');
-      tarBtn.classList.add('btn-success');
+      // let tarBtn = document.querySelector('.btnNext');
+      // tarBtn.disabled = false;
+      // tarBtn.classList.remove('btn-outline-secondary');
+      // tarBtn.classList.add('btn-success');
+      setTimeout(function () {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'success',
+            title: '1st Stage Clear!',
+            showConfirmButton: false,
+            timer: 1800
+          }
+        )
+        setTimeout(function () {
+          document.getElementById('quizModal1').style.display = 'none';
+          let secModal = new bootstrap.Modal(document.getElementById('quizModal2'), {
+            keyboard: false
+          });
+          secModal.show();
+        }, 1000)
+      }, 3800)
 
     }
 
     //https://ko.javascript.info/mouse-drag-and-drop reference  
 
     function onClickPuzz() {
-      document.querySelector('#q3ModalContent').style.height = '100%';
+      document.querySelector('#q3ModalContent').style.height = '90%';
       document.querySelector('#q3Container').innerHTML = '<iframe id="puzFrame" src="./puzzle/puzzle.html"></iframe>';
     }
+
+    window.addEventListener('message', function (e) {
+      if (e.data == 'fin2nd') {
+        Swal.fire(
+          {
+            position: 'center',
+            icon: 'success',
+            title: '2nd Stage Clear!',
+            showConfirmButton: false,
+            timer: 1800
+          }
+        )
+        setTimeout(function () {
+          document.getElementById('quizModal2').style.display = 'none';
+          let trdModal = new bootstrap.Modal(document.getElementById('quizModal3'), {
+            keyboard: false
+          });
+          trdModal.show();
+        }, 1000)
+      }else if (e.data == 'fin3rd') {
+        document.getElementById('q3ModalContent').style.border = 'none';
+        document.getElementById('q3Container').style.padding = 'unset';
+        document.getElementById('q3Header').style.display = 'none';
+        document.getElementById('q3Body').style.padding = 'unset';
+      }else if (e.data == 'fin3rd_2') {
+        let ifObj = document.getElementById('puzFrame');
+        ifObj.style.display = 'none';
+        let divObj = document.getElementById('q3Body');
+        divObj.classList.add("presenPic");
+      };
+    });
   </script>
 </body>
 
